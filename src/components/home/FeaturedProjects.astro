@@ -1,0 +1,71 @@
+---
+import { projects, categoryLabels } from '../../data/projects';
+
+const featured = projects.filter((p) => p.featured);
+---
+
+<section class="py-20 bg-forteza-light" aria-labelledby="featured-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+      <div>
+        <span class="text-forteza-gold text-sm font-semibold uppercase tracking-widest">Portafolio</span>
+        <h2 id="featured-heading" class="font-display text-3xl sm:text-4xl font-bold text-forteza-green mt-2">
+          Proyectos destacados
+        </h2>
+      </div>
+      <a
+        href="/proyectos"
+        class="text-forteza-green hover:text-forteza-green-light font-medium text-sm flex items-center gap-1 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green rounded"
+      >
+        Ver todos los proyectos
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-6" role="list">
+      {featured.map((project) => (
+        <li>
+          <a
+            href={`/proyectos/${project.slug}`}
+            class="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green"
+            aria-label={`Ver proyecto: ${project.name}`}
+          >
+            <div class="relative overflow-hidden h-52">
+              <img
+                src={project.image}
+                alt={`${project.name} — proyecto ${categoryLabels[project.category]} en ${project.zone}`}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                width="600"
+                height="400"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 bg-forteza-green text-white text-xs font-semibold px-2 py-1 rounded">
+                {categoryLabels[project.category]}
+              </span>
+            </div>
+            <div class="p-5">
+              <h3 class="font-semibold text-forteza-green text-lg group-hover:text-forteza-green-light transition-colors">
+                {project.name}
+              </h3>
+              <div class="flex items-center gap-3 mt-2 text-sm text-gray-500">
+                <span class="flex items-center gap-1">
+                  <svg class="w-4 h-4 text-forteza-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  {project.zone}
+                </span>
+                <span>·</span>
+                <span>{project.area} m²</span>
+                <span>·</span>
+                <span>{project.year}</span>
+              </div>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

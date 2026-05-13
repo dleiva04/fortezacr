@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-forteza-green: #1B4332;
+    --color-forteza-green-light: #2D6A4F;
+    --color-forteza-cement: #4A5568;
+    --color-forteza-gold: #C8973A;
+    --color-forteza-gold-light: #E0B05A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-forteza-green);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .text-forteza-green   { color: var(--color-forteza-green); }
+  .text-forteza-green-light { color: var(--color-forteza-green-light); }
+  .text-forteza-cement  { color: var(--color-forteza-cement); }
+  .text-forteza-gold    { color: var(--color-forteza-gold); }
+  .text-forteza-gold-light { color: var(--color-forteza-gold-light); }
+  .bg-forteza-green     { background-color: var(--color-forteza-green); }
+  .bg-forteza-green-light { background-color: var(--color-forteza-green-light); }
+  .bg-forteza-gold      { background-color: var(--color-forteza-gold); }
+  .bg-forteza-gold-light { background-color: var(--color-forteza-gold-light); }
+  .bg-forteza-light     { background-color: #F7F7F7; }
+  .border-forteza-green { border-color: var(--color-forteza-green); }
+  .border-forteza-gold  { border-color: var(--color-forteza-gold); }
+  .font-display         { font-family: 'Playfair Display', Georgia, serif; }
+  .accent-forteza-green { accent-color: var(--color-forteza-green); }
+  .focus-visible\:ring-forteza-green:focus-visible { --tw-ring-color: var(--color-forteza-green); }
+  .focus-visible\:ring-forteza-gold:focus-visible  { --tw-ring-color: var(--color-forteza-gold); }
+}

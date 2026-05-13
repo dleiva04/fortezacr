@@ -1,0 +1,48 @@
+---
+import BeforeAfterSlider from './BeforeAfterSlider.tsx';
+---
+
+<section class="py-20 bg-forteza-light" aria-labelledby="before-after-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-forteza-gold text-sm font-semibold uppercase tracking-widest">Transformaciones</span>
+      <h2 id="before-after-heading" class="font-display text-3xl sm:text-4xl font-bold text-forteza-green mt-2">
+        Remodelaciones que hablan por sí solas
+      </h2>
+      <p class="mt-4 text-gray-500 max-w-xl mx-auto">
+        Mueve el divisor para comparar el antes y después de nuestros proyectos de remodelación.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <BeforeAfterSlider
+        client:visible
+        beforeSrc="/images/project-remodel-before.jpg"
+        afterSrc="/images/project-remodel-after.jpg"
+        beforeAlt="Cocina antes de la remodelación — estado original"
+        afterAlt="Cocina después de la remodelación — resultado final con isla y gabinetes nuevos"
+        label="Cocina integral — Curridabat, San José"
+      />
+      <BeforeAfterSlider
+        client:visible
+        beforeSrc="/images/project-remodel2-before.jpg"
+        afterSrc="/images/project-remodel2-after.jpg"
+        beforeAlt="Baño antes de la remodelación — estado original"
+        afterAlt="Baño después de la remodelación — porcelanato y grifería nueva"
+        label="Baños — Alajuela Centro"
+      />
+    </div>
+
+    <div class="text-center mt-10">
+      <a
+        href="/proyectos?categoria=remodelacion"
+        class="inline-flex items-center gap-2 bg-forteza-green hover:bg-forteza-green-light text-white font-semibold px-6 py-3 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green focus-visible:ring-offset-2"
+      >
+        Ver todos los proyectos de remodelación
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+# Forteza CR
+
+> Empresa constructora en Costa Rica especializada en construcción de casas, edificios, condominios, proyectos comerciales y remodelaciones.
+
+## Descripción
+
+Forteza CR es una empresa constructora costarricense con más de 10 años de experiencia. Opera principalmente en el Gran Área Metropolitana (Escazú, Santa Ana, Heredia, Alajuela, San José) y también en Guanacaste, Pacífico Central, Caribe y Zona Norte.
+
+## Servicios
+
+- **Casas y Residencias**: Construcción de viviendas unifamiliares, desde diseño hasta entrega de llaves.
+- **Edificios y Condominios**: Proyectos verticales residenciales y de uso mixto.
+- **Proyectos Comerciales**: Oficinas, locales, bodegas y restaurantes.
+- **Remodelaciones y Ampliaciones**: Renovación de espacios existentes, cocinas, baños, fachadas y ampliaciones.
+
+## Cotizador online
+
+El sitio incluye un cotizador guiado en /cotizar que permite a los usuarios obtener un estimado de inversión en colones (CRC) o dólares (USD) basado en tipo de proyecto, área, zona y características específicas.
+
+## Contacto
+
+- Teléfono: +506 0000-0000
+- WhatsApp: https://wa.me/50600000000
+- Correo: info@fortezacr.com
+- Ubicación: San José, Costa Rica
+
+## Sitio web
+
+- Inicio: https://fortezacr.com
+- Proyectos: https://fortezacr.com/proyectos
+- Servicios: https://fortezacr.com/servicios
+- Nosotros: https://fortezacr.com/nosotros
+- Cotizador: https://fortezacr.com/cotizar
+- Contacto: https://fortezacr.com/contacto
+- Carreras: https://fortezacr.com/carreras

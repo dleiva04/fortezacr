@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { jobs, values } from '../data/careers';
+
+const iconMap: Record<string, string> = {
+  star:      `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-10 h-10 mx-auto text-forteza-gold" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>`,
+  handshake: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-10 h-10 mx-auto text-forteza-gold" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+  leaf:      `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-10 h-10 mx-auto text-forteza-gold" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
+};
+---
+
+<BaseLayout
+  title="Carreras — Trabaja con nosotros"
+  description="Únete al equipo de Forteza CR. Trabajamos en un ambiente de colaboración, crecimiento y excelencia en la construcción en Costa Rica."
+>
+  <!-- Hero (estilo Bechtel) -->
+  <section class="relative py-24 overflow-hidden" aria-labelledby="careers-heading">
+    <div class="absolute inset-0" aria-hidden="true">
+      <img
+        src="/images/careers-culture.jpg"
+        alt=""
+        class="w-full h-full object-cover object-center"
+        width="1200"
+        height="600"
+      />
+      <div class="absolute inset-0 bg-forteza-green/80"></div>
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+      <nav aria-label="Rutas de navegación" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-green-300">
+          <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white font-medium" aria-current="page">Carreras</li>
+        </ol>
+      </nav>
+      <h1 id="careers-heading" class="font-display text-3xl sm:text-5xl font-bold mb-4 max-w-2xl">
+        Construye tu carrera con Forteza CR
+      </h1>
+      <p class="text-green-100 text-lg max-w-xl">
+        Buscamos personas apasionadas por la construcción, comprometidas con la calidad y con ganas de crecer junto a un equipo que da lo mejor cada día.
+      </p>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="py-20 bg-white" aria-labelledby="values-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 id="values-heading" class="font-display text-3xl font-bold text-forteza-green">
+          Por qué trabajar con nosotros
+        </h2>
+      </div>
+      <ul class="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
+        {values.map((v) => (
+          <li class="text-center">
+            <div class="mb-4 flex justify-center text-forteza-gold" set:html={iconMap[v.icon]} />
+            <h3 class="font-semibold text-forteza-green text-lg mb-2">{v.title}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">{v.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Vacantes -->
+  <section class="py-20 bg-forteza-light" aria-labelledby="jobs-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <span class="text-forteza-gold text-sm font-semibold uppercase tracking-widest">Oportunidades abiertas</span>
+        <h2 id="jobs-heading" class="font-display text-3xl font-bold text-forteza-green mt-2">
+          Vacantes actuales
+        </h2>
+      </div>
+
+      <ul class="space-y-4" role="list">
+        {jobs.map((job) => (
+          <li>
+            <article
+              class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:border-forteza-green/30 hover:shadow-md transition-all"
+              aria-labelledby={`job-${job.id}-heading`}
+            >
+              <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
+                <div>
+                  <h3 id={`job-${job.id}-heading`} class="font-semibold text-forteza-green text-xl">{job.title}</h3>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="text-xs bg-green-100 text-forteza-green px-2 py-1 rounded-full font-medium">{job.department}</span>
+                    <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">{job.type}</span>
+                    <span class="text-xs text-gray-500 flex items-center gap-1">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      {job.location}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed mb-4">{job.description}</p>
+              <details class="text-sm">
+                <summary class="text-forteza-green font-medium cursor-pointer hover:text-forteza-green-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green rounded">
+                  Ver requisitos
+                </summary>
+                <ul class="mt-3 space-y-1 pl-4 border-l-2 border-forteza-gold">
+                  {job.requirements.map((r) => (
+                    <li class="text-gray-600 flex items-start gap-2">
+                      <span class="text-forteza-gold mt-0.5 flex-shrink-0" aria-hidden="true">·</span>
+                      {r}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Formulario de aplicación -->
+  <section class="py-20 bg-white" aria-labelledby="apply-heading">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 id="apply-heading" class="font-display text-3xl font-bold text-forteza-green">
+          ¿No ves tu perfil? Escríbenos igual
+        </h2>
+        <p class="mt-3 text-gray-500">
+          Siempre estamos buscando talento. Comparte tu información y te contactamos cuando haya una oportunidad.
+        </p>
+      </div>
+
+      <form
+        action="#"
+        method="post"
+        class="space-y-5"
+        aria-label="Formulario de aplicación de empleo"
+        novalidate
+      >
+        <div>
+          <label for="apply-name" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo <span aria-label="requerido" class="text-red-500">*</span></label>
+          <input
+            type="text"
+            id="apply-name"
+            name="name"
+            required
+            autocomplete="name"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 focus:outline-none focus:border-forteza-green transition-colors"
+            placeholder="Juan Rodríguez"
+          />
+        </div>
+        <div>
+          <label for="apply-email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico <span aria-label="requerido" class="text-red-500">*</span></label>
+          <input
+            type="email"
+            id="apply-email"
+            name="email"
+            required
+            autocomplete="email"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 focus:outline-none focus:border-forteza-green transition-colors"
+            placeholder="juan@ejemplo.com"
+          />
+        </div>
+        <div>
+          <label for="apply-position" class="block text-sm font-medium text-gray-700 mb-1">Puesto de interés</label>
+          <input
+            type="text"
+            id="apply-position"
+            name="position"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 focus:outline-none focus:border-forteza-green transition-colors"
+            placeholder="Ej. Maestro de Obras, Ingeniero Civil…"
+          />
+        </div>
+        <div>
+          <label for="apply-cv" class="block text-sm font-medium text-gray-700 mb-1">Enlace a tu CV o LinkedIn</label>
+          <input
+            type="url"
+            id="apply-cv"
+            name="cv_url"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 focus:outline-none focus:border-forteza-green transition-colors"
+            placeholder="https://linkedin.com/in/tu-perfil"
+          />
+        </div>
+        <div>
+          <label for="apply-message" class="block text-sm font-medium text-gray-700 mb-1">¿Por qué quieres unirte a Forteza CR?</label>
+          <textarea
+            id="apply-message"
+            name="message"
+            rows="4"
+            class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-700 focus:outline-none focus:border-forteza-green transition-colors resize-none"
+            placeholder="Cuéntanos un poco sobre ti y tu experiencia…"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-forteza-green hover:bg-forteza-green-light text-white font-semibold py-3 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green"
+        >
+          Enviar mi aplicación
+        </button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

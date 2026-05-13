@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BeforeAfterSlider from '../../components/home/BeforeAfterSlider.tsx';
+import { projects, categoryLabels } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: project.name,
+  description: project.description,
+  image: new URL(project.image, Astro.site).toString(),
+  locationCreated: {
+    '@type': 'Place',
+    name: project.zone,
+    addressCountry: 'CR',
+  },
+  creator: {
+    '@type': 'Organization',
+    name: 'Forteza CR',
+  },
+};
+---
+
+<BaseLayout
+  title={project.name}
+  description={`${project.name} — proyecto ${categoryLabels[project.category]} de ${project.area} m² en ${project.zone}. ${project.description}`}
+  ogImage={project.image}
+  schema={schema}
+>
+  <article class="py-12 bg-white" aria-labelledby="project-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav aria-label="Rutas de navegación" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-gray-400" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/" itemprop="item" class="hover:text-forteza-green transition-colors"><span itemprop="name">Inicio</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <li aria-hidden="true">/</li>
+          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/proyectos" itemprop="item" class="hover:text-forteza-green transition-colors"><span itemprop="name">Proyectos</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+          <li aria-hidden="true">/</li>
+          <li class="text-forteza-green font-medium" aria-current="page">{project.name}</li>
+        </ol>
+      </nav>
+
+      <!-- Header -->
+      <div class="mb-8">
+        <span class="inline-block bg-forteza-green text-white text-xs font-semibold px-2 py-1 rounded mb-3">
+          {categoryLabels[project.category]}
+        </span>
+        <h1 id="project-heading" class="font-display text-3xl sm:text-4xl font-bold text-forteza-green">
+          {project.name}
+        </h1>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 mt-4 text-sm text-gray-500">
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4 text-forteza-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            {project.zone}
+          </span>
+          <span>{project.area} m²</span>
+          <span>Año {project.year}</span>
+        </div>
+      </div>
+
+      <!-- Main image -->
+      <div class="rounded-2xl overflow-hidden mb-8 shadow-md">
+        <img
+          src={project.image}
+          alt={`Vista principal de ${project.name} — ${categoryLabels[project.category]} en ${project.zone}`}
+          class="w-full h-80 sm:h-[480px] object-cover"
+          width="1200"
+          height="600"
+          loading="eager"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <!-- Description -->
+        <div class="lg:col-span-2 space-y-8">
+          <section aria-labelledby="description-heading">
+            <h2 id="description-heading" class="font-semibold text-forteza-green text-xl mb-3">Sobre el proyecto</h2>
+            <p class="text-gray-600 leading-relaxed">{project.description}</p>
+          </section>
+
+          <!-- Highlights -->
+          <section aria-labelledby="highlights-heading">
+            <h2 id="highlights-heading" class="font-semibold text-forteza-green text-xl mb-3">Características principales</h2>
+            <ul class="grid grid-cols-2 gap-2">
+              {project.highlights.map((h) => (
+                <li class="flex items-center gap-2 text-sm text-gray-600">
+                  <span class="w-2 h-2 rounded-full bg-forteza-gold flex-shrink-0" aria-hidden="true"></span>
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <!-- Before/After (only for remodelaciones) -->
+          {project.before && project.after && (
+            <section aria-labelledby="ba-heading">
+              <h2 id="ba-heading" class="font-semibold text-forteza-green text-xl mb-4">Antes y después</h2>
+              <BeforeAfterSlider
+                client:visible
+                beforeSrc={project.before}
+                afterSrc={project.after}
+                beforeAlt={`${project.name} antes de la remodelación`}
+                afterAlt={`${project.name} después de la remodelación`}
+              />
+            </section>
+          )}
+
+          <!-- Gallery -->
+          {project.gallery.length > 1 && (
+            <section aria-labelledby="gallery-heading">
+              <h2 id="gallery-heading" class="font-semibold text-forteza-green text-xl mb-4">Galería</h2>
+              <ul class="grid grid-cols-2 gap-3">
+                {project.gallery.map((img, i) => (
+                  <li>
+                    <img
+                      src={img}
+                      alt={`${project.name} — imagen ${i + 1} de la galería`}
+                      class="w-full h-48 object-cover rounded-lg"
+                      width="600"
+                      height="400"
+                      loading="lazy"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="lg:col-span-1" aria-label="Información adicional del proyecto">
+          <div class="bg-forteza-light rounded-2xl p-6 sticky top-24 space-y-6">
+            <div>
+              <h3 class="font-semibold text-forteza-green mb-3">Datos del proyecto</h3>
+              <dl class="space-y-2 text-sm">
+                <div class="flex justify-between"><dt class="text-gray-500">Tipo</dt><dd class="font-medium text-gray-700">{categoryLabels[project.category]}</dd></div>
+                <div class="flex justify-between"><dt class="text-gray-500">Área</dt><dd class="font-medium text-gray-700">{project.area} m²</dd></div>
+                <div class="flex justify-between"><dt class="text-gray-500">Zona</dt><dd class="font-medium text-gray-700">{project.zone}</dd></div>
+                <div class="flex justify-between"><dt class="text-gray-500">Año</dt><dd class="font-medium text-gray-700">{project.year}</dd></div>
+              </dl>
+            </div>
+
+            <div class="border-t border-gray-200 pt-5">
+              <p class="text-sm text-gray-500 mb-4">¿Te gustaría un proyecto similar?</p>
+              <a
+                href={`https://wa.me/50600000000?text=Hola%20Forteza%20CR%2C%20me%20interesa%20un%20proyecto%20similar%20a%20${encodeURIComponent(project.name)}.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center gap-2 w-full bg-forteza-green hover:bg-forteza-green-light text-white font-semibold px-4 py-3 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green text-sm"
+              >
+                Contactar por WhatsApp
+              </a>
+              <a
+                href="/cotizar"
+                class="flex items-center justify-center gap-2 w-full mt-3 border-2 border-forteza-green text-forteza-green hover:bg-green-50 font-semibold px-4 py-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green text-sm"
+              >
+                Cotizar mi proyecto
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

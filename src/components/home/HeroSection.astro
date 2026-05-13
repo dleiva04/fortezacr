@@ -1,0 +1,84 @@
+---
+---
+
+<section
+  class="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+  aria-labelledby="hero-heading"
+>
+  <!-- Background image -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <img
+      src="/images/hero-bg.jpg"
+      alt=""
+      class="w-full h-full object-cover object-center"
+      width="1920"
+      height="1080"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-forteza-green/70"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-20">
+    <span class="inline-block bg-forteza-gold/90 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-6">
+      Empresa constructora · Costa Rica
+    </span>
+
+    <h1
+      id="hero-heading"
+      class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+    >
+      Construimos la visión<br />
+      <span class="text-forteza-gold-light">que tienes en mente</span>
+    </h1>
+
+    <p class="text-lg sm:text-xl text-green-100 max-w-2xl mx-auto mb-10 leading-relaxed">
+      Casas, edificios, proyectos comerciales y remodelaciones en Costa Rica.
+      Calidad, cumplimiento y transparencia desde el primer día.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/proyectos"
+        class="inline-flex items-center justify-center gap-2 bg-white text-forteza-green font-semibold px-6 py-3 rounded-md hover:bg-green-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-forteza-green"
+      >
+        Ver proyectos
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a
+        href="/cotizar"
+        class="inline-flex items-center justify-center gap-2 bg-forteza-gold hover:bg-forteza-gold-light text-white font-semibold px-6 py-3 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-gold focus-visible:ring-offset-2 focus-visible:ring-offset-forteza-green"
+      >
+        Cotizar mi proyecto
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="mt-16 grid grid-cols-3 gap-6 max-w-xl mx-auto border-t border-white/20 pt-10">
+      <div>
+        <p class="text-3xl font-bold font-display text-forteza-gold-light">+50</p>
+        <p class="text-sm text-green-200 mt-1">Proyectos completados</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold font-display text-forteza-gold-light">10+</p>
+        <p class="text-sm text-green-200 mt-1">Años de experiencia</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold font-display text-forteza-gold-light">7</p>
+        <p class="text-sm text-green-200 mt-1">Zonas en CR</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 animate-bounce" aria-hidden="true">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>

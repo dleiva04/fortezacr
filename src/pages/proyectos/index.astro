@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectGrid from '../../components/projects/ProjectGrid.tsx';
+import { projects } from '../../data/projects';
+
+const url = Astro.url;
+const initialCategory = url.searchParams.get('categoria') ?? 'all';
+---
+
+<BaseLayout
+  title="Portafolio de proyectos"
+  description="Conoce los proyectos de construcción y remodelación de Forteza CR en Costa Rica. Casas, condominios, oficinas y remodelaciones en el Gran Área Metropolitana y más."
+>
+  <section class="py-16 bg-white" aria-labelledby="projects-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10">
+        <nav aria-label="Rutas de navegación" class="mb-4">
+          <ol class="flex items-center gap-2 text-sm text-gray-400">
+            <li><a href="/" class="hover:text-forteza-green transition-colors">Inicio</a></li>
+            <li aria-hidden="true">/</li>
+            <li class="text-forteza-green font-medium" aria-current="page">Proyectos</li>
+          </ol>
+        </nav>
+        <span class="text-forteza-gold text-sm font-semibold uppercase tracking-widest">Nuestro trabajo</span>
+        <h1 id="projects-heading" class="font-display text-3xl sm:text-4xl font-bold text-forteza-green mt-2">
+          Portafolio de proyectos
+        </h1>
+        <p class="mt-3 text-gray-500 max-w-2xl">
+          {projects.length} proyectos completados en Costa Rica. Filtra por tipo para encontrar el que más se asemeja a tu visión.
+        </p>
+      </div>
+
+      <ProjectGrid client:load projects={projects} initialCategory={initialCategory} />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,126 @@
+---
+const navLinks = [
+  { href: '/',          label: 'Inicio' },
+  { href: '/proyectos', label: 'Proyectos' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/nosotros',  label: 'Nosotros' },
+  { href: '/carreras',  label: 'Carreras' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+  <nav
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16"
+    aria-label="Navegación principal"
+  >
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green rounded" aria-label="Forteza CR — Inicio">
+      <div class="w-8 h-8 bg-forteza-green rounded-sm flex items-center justify-center" aria-hidden="true">
+        <span class="text-white font-bold text-sm font-display">F</span>
+      </div>
+      <span class="font-display font-bold text-xl text-forteza-green tracking-tight">Forteza CR</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-1" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'px-4 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green',
+              (link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href))
+                ? 'text-forteza-green bg-green-50'
+                : 'text-gray-600 hover:text-forteza-green hover:bg-gray-50',
+            ]}
+            aria-current={(link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href)) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- CTA -->
+    <div class="hidden md:flex items-center gap-3">
+      <a
+        href="tel:+50600000000"
+        class="text-sm text-gray-600 hover:text-forteza-green font-medium transition-colors"
+        aria-label="Llamar a Forteza CR"
+      >
+        +506 0000-0000
+      </a>
+      <a
+        href="/cotizar"
+        class="bg-forteza-gold hover:bg-forteza-gold-light text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-gold"
+      >
+        Cotizar proyecto
+      </a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 rounded-md text-gray-600 hover:text-forteza-green hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green transition-colors"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menú de navegación"
+    >
+      <!-- Hamburger icon (visible when closed) -->
+      <svg id="icon-menu" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <!-- X icon (visible when open) -->
+      <svg id="icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden border-t border-gray-100 bg-white" role="navigation" aria-label="Menú móvil">
+    <ul class="px-4 py-3 space-y-1" role="list">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              'block px-3 py-2 rounded-md text-sm font-medium transition-colors',
+              (link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href))
+                ? 'text-forteza-green bg-green-50'
+                : 'text-gray-600 hover:text-forteza-green hover:bg-gray-50',
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-2 border-t border-gray-100">
+        <a
+          href="/cotizar"
+          class="block text-center bg-forteza-gold text-white text-sm font-semibold px-3 py-2 rounded-md"
+        >
+          Cotizar proyecto
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconMenu = document.getElementById('icon-menu');
+  const iconClose = document.getElementById('icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    iconMenu?.classList.toggle('hidden', !isOpen);
+    iconClose?.classList.toggle('hidden', isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Abrir menú de navegación' : 'Cerrar menú de navegación');
+  });
+</script>

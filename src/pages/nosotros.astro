@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stats = [
+  { value: '+50', label: 'Proyectos completados' },
+  { value: '10+', label: 'Años de experiencia' },
+  { value: '7',   label: 'Zonas en Costa Rica' },
+  { value: '100%',label: 'Proyectos a tiempo' },
+];
+---
+
+<BaseLayout
+  title="Nosotros — Quiénes somos"
+  description="Conoce la historia, misión y equipo de Forteza CR. Más de 10 años construyendo con excelencia en Costa Rica."
+>
+  <!-- Hero -->
+  <section class="py-20 bg-forteza-green text-white" aria-labelledby="about-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Rutas de navegación" class="mb-6">
+        <ol class="flex items-center gap-2 text-sm text-green-300">
+          <li><a href="/" class="hover:text-white transition-colors">Inicio</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-white font-medium" aria-current="page">Nosotros</li>
+        </ol>
+      </nav>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-forteza-gold-light text-sm font-semibold uppercase tracking-widest">Quiénes somos</span>
+          <h1 id="about-heading" class="font-display text-3xl sm:text-4xl font-bold mt-3 mb-6">
+            Construimos con propósito desde hace más de 10 años
+          </h1>
+          <p class="text-green-100 leading-relaxed mb-4">
+            Forteza CR nació con una misión clara: demostrar que en Costa Rica se puede construir con los más altos estándares internacionales, respetando plazos, presupuestos y el entorno natural.
+          </p>
+          <p class="text-green-100 leading-relaxed">
+            Comenzamos construyendo casas en el Gran Área Metropolitana y hoy abarcamos proyectos en toda la geografía del país: desde condominios en Escazú hasta cabañas en Guanacaste y proyectos comerciales en Heredia.
+          </p>
+        </div>
+        <div class="relative">
+          <img
+            src="/images/team.jpg"
+            alt="Equipo de trabajo de Forteza CR en un sitio de construcción"
+            class="w-full h-80 object-cover rounded-2xl shadow-xl"
+            width="800"
+            height="500"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-12 bg-forteza-gold" aria-label="Estadísticas de Forteza CR">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ul class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-white" role="list">
+        {stats.map((s) => (
+          <li>
+            <p class="font-display text-4xl font-bold">{s.value}</p>
+            <p class="text-sm mt-1 text-amber-100">{s.label}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Mission / Vision -->
+  <section class="py-20 bg-white" aria-labelledby="mission-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <article aria-labelledby="mission-heading">
+        <h2 id="mission-heading" class="font-display text-2xl font-bold text-forteza-green mb-4 flex items-center gap-2">
+          <svg class="w-6 h-6 text-forteza-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          Nuestra misión
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          Transformar la visión de nuestros clientes en espacios reales, construidos con integridad, materiales de primera calidad y un equipo humano comprometido con la excelencia.
+        </p>
+      </article>
+      <article aria-labelledby="vision-heading">
+        <h2 id="vision-heading" class="font-display text-2xl font-bold text-forteza-green mb-4 flex items-center gap-2">
+          <svg class="w-6 h-6 text-forteza-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          Nuestra visión
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          Ser la empresa constructora de referencia en Costa Rica, reconocida por la calidad de sus obras, el respeto al ambiente y el impacto positivo en las comunidades donde construimos.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-20 bg-forteza-light" aria-labelledby="team-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 id="team-heading" class="font-display text-3xl font-bold text-forteza-green">Nuestro equipo</h2>
+        <p class="mt-3 text-gray-500 max-w-xl mx-auto">
+          Ingenieros, arquitectos y maestros de obra con años de experiencia trabajando juntos bajo una misma cultura de calidad.
+        </p>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-md">
+        <img
+          src="/images/careers-culture.jpg"
+          alt="El equipo de Forteza CR reunido en un proyecto de construcción"
+          class="w-full h-80 object-cover object-center"
+          width="1200"
+          height="500"
+          loading="lazy"
+        />
+      </div>
+      <div class="mt-10 text-center">
+        <a
+          href="/carreras"
+          class="inline-flex items-center gap-2 bg-forteza-green hover:bg-forteza-green-light text-white font-semibold px-6 py-3 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forteza-green"
+        >
+          Únete al equipo
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

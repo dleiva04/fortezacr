@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteWizard from '../components/quote/QuoteWizard.tsx';
+---
+
+<BaseLayout
+  title="Cotizador de proyectos"
+  description="Obtén un estimado de costo para tu proyecto de construcción o remodelación en Costa Rica. Cotizador guiado en 4 pasos, con resultado en colones y dólares."
+>
+  <section class="py-16 bg-forteza-light min-h-screen" aria-labelledby="quote-heading">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <span class="text-forteza-gold text-sm font-semibold uppercase tracking-widest">Sin compromiso</span>
+        <h1 id="quote-heading" class="font-display text-3xl sm:text-4xl font-bold text-forteza-green mt-2">
+          Cotiza tu proyecto
+        </h1>
+        <p class="mt-4 text-gray-500 max-w-xl mx-auto">
+          Responde unas preguntas rápidas y obtén un estimado de inversión en colones o dólares.
+          Un experto de Forteza CR te contactará para afinar los detalles.
+        </p>
+      </div>
+
+      <QuoteWizard client:load />
+
+      <p class="text-center text-xs text-gray-400 mt-8">
+        Los estimados se basan en precios de mercado en Costa Rica (2025). Son referenciales y no constituyen una cotización formal.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
