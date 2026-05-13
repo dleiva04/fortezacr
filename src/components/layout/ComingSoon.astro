@@ -1,0 +1,74 @@
+---
+// No props needed — this overlay is rendered globally from BaseLayout
+---
+
+<div
+  id="coming-soon"
+  role="main"
+  aria-label="Sitio en construcción"
+  class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0e1a13] text-white px-6 overflow-hidden"
+>
+  <!-- Background texture -->
+  <div class="absolute inset-0 opacity-10 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center" aria-hidden="true"></div>
+  <!-- Subtle gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#1B4332]/80 via-[#0e1a13] to-[#0e1a13]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-2xl w-full text-center flex flex-col items-center gap-8">
+
+    <!-- Logo / Brand -->
+    <div class="flex flex-col items-center gap-3">
+      <div class="w-16 h-16 rounded-2xl bg-forteza-gold flex items-center justify-center shadow-lg shadow-forteza-gold/30">
+        <svg class="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      </div>
+      <span class="font-display text-3xl font-bold tracking-wide text-white">Forteza CR</span>
+    </div>
+
+    <!-- Headline -->
+    <div class="space-y-3">
+      <h1 class="font-display text-4xl sm:text-5xl font-bold leading-tight">
+        Estamos construyendo<br />
+        <span class="text-forteza-gold">algo grande.</span>
+      </h1>
+      <p class="text-gray-300 text-lg max-w-md mx-auto leading-relaxed">
+        Nuestro nuevo sitio web está en camino. Mientras tanto, contáctenos directamente.
+      </p>
+    </div>
+
+    <!-- Divider -->
+    <div class="w-16 h-px bg-forteza-gold/50"></div>
+
+    <!-- Contact options -->
+    <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+      <a
+        href="https://wa.me/50600000000?text=Hola%2C%20me%20interesa%20una%20cotizaci%C3%B3n"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold transition-colors shadow-lg shadow-[#25D366]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.531 5.856L.057 23.882a.5.5 0 00.606.64l6.218-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.887 9.887 0 01-5.031-1.375l-.36-.214-3.733.982.997-3.648-.235-.374A9.862 9.862 0 012.1 12C2.1 6.534 6.534 2.1 12 2.1S21.9 6.534 21.9 12 17.466 21.9 12 21.9z"/>
+        </svg>
+        WhatsApp
+      </a>
+
+      <a
+        href="mailto:info@fortezacr.com"
+        class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 text-white font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        info@fortezacr.com
+      </a>
+    </div>
+
+    <!-- Footer note -->
+    <p class="text-gray-500 text-sm">
+      &copy; {new Date().getFullYear()} Forteza CR · Costa Rica
+    </p>
+  </div>
+</div>
