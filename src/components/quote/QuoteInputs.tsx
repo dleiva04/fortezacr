@@ -1,4 +1,5 @@
-import { zoneLabels, type Zone } from '../../data/quoteConfig';
+import { useState } from 'react';
+import { provinces } from '../../data/crLocations';
 
 // ── Counter ──────────────────────────────────────────────────────────────────
 interface CounterProps {
@@ -78,28 +79,88 @@ export function RangeSlider({ label, min, max, step, value, onChange }: RangeSli
 }
 
 // ── ZoneSelect ────────────────────────────────────────────────────────────────
+// Renders a Province → Canton two-level selector.
+// The value passed up is a human-readable string like "San José · Escazú".
 interface ZoneSelectProps {
-  value: Zone | '';
+  value: string;
   onChange: (z: string) => void;
 }
 export function ZoneSelect({ value, onChange }: ZoneSelectProps) {
+  // Derive initial province/canton from current value (e.g. "San José · Escazú")
+  const [parts] = value.split(' · ');
+  const initProvince = provinces.find((p) => p.name === parts)?.code ?? '';
+
+  const [provinceCode, setProvinceCode] = useState(initProvince);
+
+  const selectedProvince = provinces.find((p) => p.code === provinceCode);
+
+  const handleProvince = (code: string) => {
+    setProvinceCode(code);
+    onChange(''); // reset canton selection
+  };
+
+  const handleCanton = (cantonName: string) => {
+    if (!selectedProvince) return;
+    onChange(`${selectedProvince.name} · ${cantonName}`);
+  };
+
+  // Derive selected canton name from the combined value
+  const selectedCanton = value.includes(' · ') ? value.split(' · ')[1] : '';
+
   return (
-    <div>
-      <label htmlFor="zone-select" className="font-medium text-gray-700 mb-3 block">
-        ¿En qué zona de Costa Rica?
-      </label>
-      <select
-        id="zone-select"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-700 text-sm focus:outline-none focus:border-forteza-green transition-colors"
-        aria-required="true"
-      >
-        <option value="" disabled>Selecciona una zona…</option>
-        {Object.entries(zoneLabels).map(([key, label]) => (
-          <option key={key} value={key}>{label}</option>
-        ))}
-      </select>
+    <div className="space-y-4">
+      <p className="font-medium text-gray-700">¿En qué zona de Costa Rica?</p>
+
+      {/* Province */}
+      <div>
+        <label htmlFor="province-select" className="text-sm text-gray-500 mb-1 block">
+          Provincia
+        </label>
+        <select
+          id="province-select"
+          value={provinceCode}
+          onChange={(e) => handleProvince(e.target.value)}
+          className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-700 text-sm focus:outline-none focus:border-forteza-green transition-colors bg-white"
+          aria-required="true"
+        >
+          <option value="" disabled>Seleccioná una provincia…</option>
+          {provinces.map((p) => (
+            <option key={p.code} value={p.code}>{p.name}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Canton — only shown once a province is selected */}
+      {selectedProvince && (
+        <div>
+          <label htmlFor="canton-select" className="text-sm text-gray-500 mb-1 block">
+            Cantón
+          </label>
+          <select
+            id="canton-select"
+            value={selectedCanton}
+            onChange={(e) => handleCanton(e.target.value)}
+            className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-gray-700 text-sm focus:outline-none focus:border-forteza-green transition-colors bg-white"
+            aria-required="true"
+          >
+            <option value="" disabled>Seleccioná un cantón…</option>
+            {selectedProvince.cantons.map((c) => (
+              <option key={c.code} value={c.name}>{c.name}</option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {/* Confirmation badge */}
+      {value && (
+        <p className="text-sm text-forteza-green font-medium flex items-center gap-1">
+          <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          {value}
+        </p>
+      )}
     </div>
   );
 }

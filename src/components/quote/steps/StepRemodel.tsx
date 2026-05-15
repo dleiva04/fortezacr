@@ -1,11 +1,10 @@
-import type { Zone } from '../../../data/quoteConfig';
 import { RangeSlider, ZoneSelect } from '../QuoteInputs';
 
 export interface RemodelData {
   remodelType: string;
   area: number;
   condition: 'bueno' | 'regular' | 'deteriorado' | '';
-  zone: Zone | '';
+  zone: string;
 }
 
 interface Props {
@@ -92,7 +91,7 @@ export default function StepRemodel({ step, data, onChange }: Props) {
   );
 
   if (step === 4) return (
-    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z as Zone })} />
+    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z })} />
   );
 
   return null;

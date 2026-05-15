@@ -1,11 +1,10 @@
-import type { Zone } from '../../../data/quoteConfig';
 import { Counter, ZoneSelect } from '../QuoteInputs';
 
 export interface BuildingData {
   floors: number;
   units: number;
   buildingType: 'residencial' | 'mixto' | '';
-  zone: Zone | '';
+  zone: string;
 }
 
 interface Props {
@@ -53,7 +52,7 @@ export default function StepBuilding({ step, data, onChange }: Props) {
   );
 
   if (step === 3) return (
-    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z as Zone })} />
+    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z })} />
   );
 
   return null;

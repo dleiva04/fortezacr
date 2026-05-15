@@ -1,11 +1,9 @@
-import type { Zone } from '../../../data/quoteConfig';
-import { zoneLabels } from '../../../data/quoteConfig';
 import { Counter, RangeSlider, ZoneSelect, CheckboxGroup } from '../QuoteInputs';
 
 export interface HouseData {
   floors: 1 | 2 | 3;
   area: number;
-  zone: Zone | '';
+  zone: string;
   bedrooms: number;
   bathrooms: number;
   extras: string[];
@@ -54,7 +52,7 @@ export default function StepHouse({ step, data, onChange }: Props) {
   );
 
   if (step === 2) return (
-    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z as Zone })} />
+    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z })} />
   );
 
   if (step === 3) return (

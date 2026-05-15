@@ -1,10 +1,9 @@
-import type { Zone } from '../../../data/quoteConfig';
 import { RangeSlider, ZoneSelect, CheckboxGroup } from '../QuoteInputs';
 
 export interface CommercialData {
   commercialType: string;
   area: number;
-  zone: Zone | '';
+  zone: string;
   extras: string[];
 }
 
@@ -65,7 +64,7 @@ export default function StepCommercial({ step, data, onChange }: Props) {
   );
 
   if (step === 3) return (
-    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z as Zone })} />
+    <ZoneSelect value={data.zone} onChange={(z) => onChange({ zone: z })} />
   );
 
   if (step === 4) return (
